@@ -114,6 +114,39 @@ def parse_expected_variants(expected):
     return [part.strip() for part in expected.split("||") if part.strip()]
 
 
+def is_quota_error(error):
+    error_text = str(error).lower()
+    quota_markers = [
+        "resource_exhausted",
+        "resource exhausted",
+        "429",
+        "quota",
+        "rate limit",
+        "rate-limit",
+        "retry delay",
+    ]
+    return any(marker in error_text for marker in quota_markers)
+
+
+def invoke_with_retry(chain, question, max_retries=3, delay_seconds=70):
+    last_error = None
+    for attempt in range(1, max_retries + 1):
+        try:
+            return chain.invoke({"input": question}), None
+        except Exception as error:
+            last_error = error
+            if not is_quota_error(error) or attempt == max_retries:
+                return None, error
+
+            print(
+                f"Quota/rate limit hit. Retrying in {delay_seconds} seconds "
+                f"(attempt {attempt}/{max_retries})..."
+            )
+            time.sleep(delay_seconds)
+
+    return None, last_error
+
+
 def load_questions(question_file):
     with open(question_file, "r", encoding="utf-8") as file:
         data = json.load(file)
@@ -218,7 +251,10 @@ def run_benchmark():
                 answer_score = False
 
                 try:
-                    response = chain.invoke({"input": question})
+                    response, retry_error = invoke_with_retry(chain, question)
+                    if retry_error is not None:
+                        raise retry_error
+
                     answer = response.get("answer", "")
                     context = response.get("context", [])
                     retrieved_chunk_count = len(context)
