@@ -26,7 +26,7 @@ class RAGPipeline:
         chunk_overlap=50,
         embedding_model="all-MiniLM-L6-v2",
         retriever_type="mmr",
-        k=3,
+        k=15,
         fetch_k=10
     ):
 
