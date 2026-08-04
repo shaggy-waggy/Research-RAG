@@ -1,0 +1,30 @@
+{
+    "dataset": "hall_allotment",
+
+    "questions": [
+        {
+            "question": "Which hall is assigned to roll number 25CS10132?",
+            "expected_answer": "RP Hall"
+        },
+        {
+            "question": "Which hall has the highest number of students?",
+            "expected_answer": "RP Hall"
+        },
+        {
+            "question": "Where should Suhaan Aneja report?",
+            "expected_answer": "Azad Hall"
+        },   
+        {
+            "question": "Where halls have single room?",
+            "expected_answer": "Not mentioned"
+        },
+        {
+            "question": "What is the roll number of Sabal Agrawal?",
+            "expected_answer": "25CS10132"
+        },
+        {
+            "question": "Can Parv Chopra, Bhavya Abbet, Arjun Verma take a room together, also tell possible conditions?",
+            "expected_answer": "Yes if RK Hall has a triple room available"
+        }
+    ]
+}

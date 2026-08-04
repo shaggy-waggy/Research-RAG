@@ -2,6 +2,7 @@ import os
 import hashlib
 import streamlit as st
 
+from langchain_google_genai.chat_models import ChatGoogleGenerativeAIError
 from rag import RAGPipeline
 
 DATA_DIR = "data"
@@ -37,6 +38,21 @@ def save_uploaded_pdf(uploaded_file, file_hash):
             file.write(uploaded_file.getvalue())
 
     return file_path
+
+
+def show_llm_error(error):
+    error_text = str(error)
+    if "RESOURCE_EXHAUSTED" in error_text or "429" in error_text:
+        st.error(
+            (
+                "Gemini quota/rate limit exceeded (429). "
+                "Please wait and retry, or update your Gemini API billing/quota."
+            )
+        )
+        st.info("Quota docs: https://ai.google.dev/gemini-api/docs/rate-limits")
+        return
+
+    raise error
 
 
 uploaded_file = st.file_uploader(
@@ -89,19 +105,21 @@ if uploaded_file:
         with st.spinner(
             "Generating answer..."
         ):
+            response = None
+            try:
+                response = chain.invoke(
+                    {
+                        "input": question
+                    }
+                )
+            except ChatGoogleGenerativeAIError as error:
+                show_llm_error(error)
 
-            response = chain.invoke(
-                {
-                    "input": question
-                }
-            )
+        if response is None:
+            st.stop()
 
-        st.subheader(
-            "Answer"
-        )
-        st.write(
-            response["answer"]
-        )
+        st.subheader("Answer")
+        st.write(response["answer"])
 
         # Show retrieved chunks
         with st.expander(

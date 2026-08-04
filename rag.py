@@ -123,7 +123,7 @@ class RAGPipeline:
     def create_chain(self, vectorstore):
         print("Creating RAG chain...")
         llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash",
+            model="gemini-3.6-flash",
             temperature=0
         )
         prompt = ChatPromptTemplate.from_messages(
@@ -148,15 +148,26 @@ class RAGPipeline:
                 )
             ]
         )
-
-        retriever = vectorstore.as_retriever(
-            search_type=self.retriever_type,
-            search_kwargs={
-                "k": self.k,
-                 "fetch_k": self.fetch_k
-            }
-        )
-
+        
+        if self.retriever_type is "mmr":
+            retriever = vectorstore.as_retriever(
+                search_type=self.retriever_type,
+                search_kwargs={
+                    "k": self.k,
+                    "fetch_k": self.fetch_k
+                }
+            )
+        elif self.retriever_type is "similarity":
+            retriever = vectorstore.as_retriever(
+                search_type=self.retriever_type,
+                search_kwargs={
+                    "k": self.k
+                }
+            )
+        else:
+            raise ValueError(
+                f"Unknown retriever type: {self.retriever_type}"
+            )
 
         document_chain = create_stuff_documents_chain(
             llm,
@@ -168,7 +179,6 @@ class RAGPipeline:
             retriever,
             document_chain
         )
-
 
         return rag_chain
 

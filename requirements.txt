@@ -1,8 +1,12 @@
+streamlit
 langchain
 langchain-community
+langchain-core
+langchain-classic
+langchain-huggingface
+langchain-chroma
+langchain-google-genai
 chromadb
-streamlit
-pypdf
 sentence-transformers
+pypdf
 python-dotenv
-google-generativeai
