@@ -88,7 +88,7 @@ Measures the total time taken to retrieve relevant information and generate the 
 
 
 ### Answer Quality
-Responses are evaluated based on:
+Responses are evaluated based on:  
 Correctness  
 Relevance  
 Completeness  
