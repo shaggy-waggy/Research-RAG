@@ -1,0 +1,48 @@
+
+{   
+    "dataset": "git",
+    "questions": [
+    
+  {
+    "question": "Is Git a distributed version control system?",
+    "expected_answer": "Yes"
+  },
+  {
+    "question": "Which command initializes a new Git repository?",
+    "expected_answer": "git init"
+  },
+  {
+    "question": "Which command clones an existing repository?",
+    "expected_answer": "git clone"
+  },
+  {
+    "question": "Must a file be staged before it can be committed?",
+    "expected_answer": "Yes"
+  },
+  {
+    "question": "Which command shows the current status of the repository?",
+    "expected_answer": "git status"
+  },
+  {
+    "question": "Which command stages a file for commit?",
+    "expected_answer": "git add <file>"
+  },
+  {
+    "question": "Which command creates a commit with a message?",
+    "expected_answer": "git commit -m \"<message>\""
+  },
+  {
+    "question": "Can Git create multiple branches in the same repository?",
+    "expected_answer": "Yes"
+  },
+  {
+    "question": "Which command creates and switches to a new branch?",
+    "expected_answer": "git switch -c <branch-name>"
+  },
+  {
+
+    "question": "Which command merges another branch into the current branch?",
+    "expected_answer": "git merge <branch-name>"
+  }
+]
+}

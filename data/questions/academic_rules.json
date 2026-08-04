@@ -1,0 +1,53 @@
+{
+"dataset": "academic_rules",
+"questions": [
+{
+"question": "Who is the Chairman of the Standing Institute Disciplinary Committee?",
+"expected_answer": "Dean of Students’ Affairs"
+},
+{
+"question": "Can a student shift to another room in the hall without permission?",
+"expected_answer": "No, only with the direction or permission of the Warden"
+},
+{
+"question": "What is the normal duration of a B.Tech. (Hons.) program?",
+"expected_answer": "4 years"
+},
+{
+"question": "What is the normal duration of a Dual Degree program?",
+"expected_answer": "5 years"
+},
+{
+"question": "What is the maximum time limit to complete a 4-year B.Tech. (Hons.) degree?",
+"expected_answer": "8 years"
+},
+{
+"question": "What is the maximum medical leave allowed during a semester?",
+"expected_answer": "One month"
+},
+{
+"question": "Who governs all academic matters of the Institute?",
+"expected_answer": "The Senate"
+},
+{
+"question": "Can undergraduate students be provided married accommodation?",
+"expected_answer": "No"
+},
+{
+"question": "Is every student required to reside in a Hall of Residence unless exempted?",
+"expected_answer": "Yes"
+},
+{
+"question": "Can students keep pets in the Hall of Residence?",
+"expected_answer": "No"
+},
+{
+"question": "Is EAA (Extra Academic Activity) a credit course?",
+"expected_answer": "Yes 1 credit"
+},
+{
+"question": "What is the minimum CGPA required to opt for an Open Elective II from another department?",
+"expected_answer": "8.0"
+}
+]
+}

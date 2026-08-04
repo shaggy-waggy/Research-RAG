@@ -16,15 +16,25 @@ DATASETS = [
         "pdf_path": "data/1e603f08c8d972ef_2nd yr BOYS_HOSTEL_UG2025.pdf",
         "question_file": "data/questions/hall_allotment.json",
     },
+        {
+        "name": "git",
+        "pdf_path": "data/6103fbea51a6bef6_progit-8-105.pdf",
+        "question_file": "data/questions/git.json",
+    },
+    {
+        "name": "academic_rules",
+        "pdf_path": "data/ed8e359dbb85db7a_regulation_UG_corrected.pdf",
+        "question_file": "data/questions/academic_rules.json",
+    },
 ]
 
 RESULT_DIR = "benchmark_results"
 
 # Experiment grid
-RETRIEVERS = ["mmr"]
-K_VALUES = [5]
-CHUNK_SIZES = [256]
-EMBEDDING_MODELS = ["all-MiniLM-L6-v2"]
+RETRIEVERS = ["mmr", "similarity"]
+K_VALUES = [5, 10, 20]
+CHUNK_SIZES = [256, 512, 1024]
+EMBEDDING_MODELS = ["all-MiniLM-L6-v2", "BAAI/bge-small-en-v1.5", "BAAI/bge-base-en-v1.5"]
 
 
 def create_experiments():
@@ -114,11 +124,38 @@ def load_questions(question_file):
     return questions
 
 
+def load_question_data(question_file):
+    with open(question_file, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
 def validate_dataset(dataset):
     if not os.path.exists(dataset["pdf_path"]):
         raise FileNotFoundError(f"Missing PDF: {dataset['pdf_path']}")
     if not os.path.exists(dataset["question_file"]):
         raise FileNotFoundError(f"Missing question file: {dataset['question_file']}")
+
+    question_data = load_question_data(dataset["question_file"])
+    question_dataset_name = question_data.get("dataset")
+    if question_dataset_name != dataset["name"]:
+        raise ValueError(
+            "Dataset name mismatch: "
+            f"DATASETS entry is '{dataset['name']}' but "
+            f"question file declares '{question_dataset_name}' "
+            f"({dataset['question_file']})"
+        )
+
+    questions = question_data.get("questions")
+    if not isinstance(questions, list) or not questions:
+        raise ValueError(f"No questions found in {dataset['question_file']}")
+
+    for index, item in enumerate(questions):
+        if "question" not in item or "expected_answer" not in item:
+            raise ValueError(
+                f"Invalid question at index {index} in "
+                f"{dataset['question_file']}: requires 'question' "
+                "and 'expected_answer'"
+            )
 
 
 def run_benchmark():
