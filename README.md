@@ -1,5 +1,4 @@
 # Research-RAG
-Testing how different factors such as chunk size, embedding model, etc, affect the Retrieval-Augmented Generation System.
 
 ## Inspiration
 The KDSH 2026 problem statement motivated us to explore one of the key challenges in modern Large Language Models: reasoning over long contexts. The challenge demonstrated that although LLMs excel at localized understanding, they often struggle to maintain consistency and effectively aggregate information across lengthy documents.
