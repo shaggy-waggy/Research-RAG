@@ -2,13 +2,23 @@
 
 DocuChat is a lightweight Retrieval-Augmented Generation (RAG) system that lets users upload a PDF and ask questions in natural language. Instead of relying only on the knowledge of a large language model, the system retrieves relevant chunks from the uploaded document and uses them to generate grounded, context-aware answers.
 
-The project also serves as a research prototype for comparing retrieval configurations such as chunk size, overlap, embedding model, and retriever type.
+The project also serves as a research prototype for comparing retrieval configurations such as chunk size, embedding model, and retriever type.
 
 ## Inspiration
 
 The KDSH 2026 problem statement motivated us to explore one of the key challenges in modern Large Language Models: reasoning over long contexts. The challenge demonstrated that although LLMs excel at localized understanding, they often struggle to maintain consistency and effectively aggregate information across lengthy documents.
 
 To address this limitation, we turned to Retrieval-Augmented Generation (RAG), a framework that enhances LLMs by retrieving the most relevant information from external documents before generating responses. Since the effectiveness of a RAG system heavily depends on how documents are represented and retrieved, our work focuses on evaluating the impact of chunk size and embedding model selection on retrieval accuracy, response quality, and system efficiency.
+
+## Objectives
+We focused mainly on two objectives: 
+1. Develop a simple and efficient PDF Question Answering system using RAG.
+2. Experimentally evaluate how different retrieval types, chunk sizes and embedding models influence retrieval performance.
+
+Specifically, we investigate:
+- Does chunk size affect retrieval quality?
+- Which embedding model provides better semantic search?
+- What is the trade-off between response quality and response time?
 
 ## What the app does
 
