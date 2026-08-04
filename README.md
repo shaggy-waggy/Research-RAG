@@ -67,11 +67,11 @@ Specifically, we investigate:
 To understand how different retrieval configurations affect performance, we compare multiple combinations of chunk sizes and embedding models.
 
 ### Chunk Sizes
-256 Tokens
+256 Tokens   
 512 Tokens
 
 ### Embedding Models
-all-MiniLM-L6-v2
+all-MiniLM-L6-v2   
 BAAI/age-small-en  
 
 
