@@ -89,16 +89,16 @@ Measures the total time taken to retrieve relevant information and generate the 
 
 ### Answer Quality
 Responses are evaluated based on:
-- Correctness
-- Relevance
-- Completeness
+Correctness  
+Relevance  
+Completeness  
 
 
 ## Dataset Used
 
 ### College Examination Timetable
 Example Questions-  
-- Which exam does Roll No. 2205143 have on 18 December?
-- When is the Operating Systems examination?
-- Which room is allotted for Roll No. 2206125?
+Which exam does Roll No. 2205143 have on 18 December?  
+When is the Operating Systems examination?  
+Which room is allotted for Roll No. 2206125?  
  
